@@ -15,6 +15,11 @@ void Clox::eval(const std::string& source){
     std::vector<Token> tokens = scanner.scan();
     if ( err_handler.has_error() ) return;
     
+    // TODO REMOVE
+    for ( auto& token : tokens ) {
+        token.print();
+    }
+    
 //    Parser parser{tokens, err_handler};
 //    Ast ast = parser.parse();
 //    if ( err_handler.has_error() ) return;

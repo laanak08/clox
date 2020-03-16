@@ -11,6 +11,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 namespace clox {
 enum TokenType {
@@ -50,6 +51,7 @@ public:
     Token(TokenType type, size_t line) : type{type}, lexeme{""}, literal{""}, line{line} {}
     Token(TokenType type, const std::string& lexeme, size_t line) : type{type}, lexeme{lexeme}, literal{""}, line{line} {}
     Token(TokenType type, const std::string& lexeme, const std::string& literal, size_t line) : type{type}, lexeme{lexeme}, literal{literal}, line{line} {}
+    void print() { std::cout << "type: " << type << "\nlexeme: " << lexeme << "\nliteral: " << literal << "\nline: " << line << "\n" << std::endl; }
 private:
     TokenType type;
     std::string lexeme;

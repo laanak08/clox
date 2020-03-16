@@ -13,10 +13,13 @@
 using namespace clox;
 using clox::TokenType;
 
+TokenType Scanner::identifer_token_type(const std::string& s){
+    const bool is_keyword = keywords.find(s) != keywords.end();
+    return is_keyword ?  keywords[s] : IDENTIFIER;
+}
 
 std::string Scanner::get_identifier_val(){
     while( is_alphanumeric(peek()) ) next_char();
-    // TODO check keyword map for token type
     return current_lexeme();
 }
 
@@ -93,7 +96,9 @@ void Scanner::scan_token(){
             if ( is_digit(c) ) {
                 consume_token(NUMBER, get_number_val());
             } else if ( is_alpha(c) ) {
-                consume_token(IDENTIFIER, get_identifier_val());
+                std::string val = get_identifier_val();
+                TokenType ident_type = identifer_token_type(val);
+                consume_token(ident_type, val);
             } else {
                 std::string msg{"Unexpected character: "}; msg += c;
                 Error err{line, msg};

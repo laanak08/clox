@@ -54,6 +54,7 @@ private:
     std::string get_number_val();
     std::string get_string_val();
     std::string get_identifier_val();
+    TokenType identifer_token_type(const std::string& s);
     void ignore_line();
     
     bool is_alphanumeric(const char c) const { return is_alpha(c) || is_digit(c); }
