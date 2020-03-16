@@ -19,16 +19,16 @@ int main(int argc, const char * argv[]) {
         return EX_USAGE;
     }
     
-    clox::Clox interpreter{};
+    Clox clox_lang{};
     
     if ( argc == 2 ) {
-        interpreter.eval_file(argv[1]);
-        if ( interpreter.had_error() ) {
-            interpreter.err_report();
+        clox_lang.eval_file(argv[1]);
+        if ( clox_lang.had_error() ) {
+            clox_lang.err_report();
             return EX_DATAERR;
         }
     } else {
-        interpreter.prompt();
+        clox_lang.prompt();
     }
     
     return EX_OK;
